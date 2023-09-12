@@ -1,0 +1,130 @@
+.product__item {
+  // border: 1px solid #ccc;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  img {
+    padding: 14px;
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease-in;
+    &:hover {
+      transform: scale(1.09);
+    }
+    @include tablet {
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+  &.rate {
+    flex-direction: row;
+    img {
+      width: 50%;
+    }
+    .product__item__text {
+      width: 50%;
+      margin-top: 0;
+      padding: 20px 10px;
+      justify-content: center;
+      border-top: none;
+      span {
+        font-size: 16px;
+      }
+      h3 {
+        font-size: 19px;
+        cursor: pointer;
+      }
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+  &.best {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      width: 30%;
+    }
+    .product__item__text {
+      width: 70%;
+      margin-top: 0;
+      padding: 20px 10px;
+      justify-content: center;
+      border-top: none;
+      &__btn {
+        button {
+          padding: 10px 24px;
+          border-radius: 5px;
+          color: #fff;
+          background-color: var(--main-color);
+          cursor: pointer;
+          font-size: 15px;
+        }
+      }
+      h3 {
+        font-size: 16px;
+      }
+      p {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--main-color);
+      }
+    }
+  }
+
+  &__text {
+    flex: 1;
+    padding: 10px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 14px 10px;
+    border-top: 1px solid var(--main-bg);
+    span {
+      color: rgb(255, 85, 0);
+      font-size: 12px;
+      text-transform: capitalize;
+    }
+    h3 {
+      font-weight: 600;
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &:hover {
+        color: var(--main-color);
+      }
+    }
+    p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
+  &__heart {
+    display: flex;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 4px;
+    background-color: var(--main-bg);
+    color: var(--main-color);
+    border-radius: 4px;
+    transform: translateX(100px);
+    cursor: pointer;
+    &:hover {
+      background-color: var(--main-color);
+      color: #fff;
+    }
+  }
+  &:hover &__heart {
+    transform: translateX(0);
+    transition: transform 0.2s ease-in;
+  }
+}
