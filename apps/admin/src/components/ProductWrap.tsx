@@ -13,6 +13,7 @@ import { GetProducts } from "../apiRequest";
 import { IProduct } from "ui/type";
 import { IconPencil, IconTrash } from "ui/tabler";
 import { Link, useNavigate } from "react-router-dom";
+import { fomatCurrency } from "ui/util";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -47,7 +48,7 @@ const ProductWrap = ({ isBtn }: { isBtn?: boolean }) => {
   return (
     <Box>
       <Box className={classes.header}>
-        <Box sx={{ flex: 2 }}>Sản phẩm</Box>
+        <Box sx={{ flex: 3 }}>Sản phẩm</Box>
         <Box sx={{ flex: 1 }}>Số lượng</Box>
         <Box sx={{ flex: 1 }}>Giá</Box>
         {isBtn && <Space sx={{ flex: 1 }}></Space>}
@@ -83,7 +84,7 @@ export const ProductItem = ({
       }}
     >
       <Box
-        sx={{ display: "flex", gap: "0 10px", flex: 2, alignItems: "center" }}
+        sx={{ display: "flex", gap: "0 10px", flex: 3, alignItems: "center" }}
       >
         <Box sx={{ width: "80px" }}>
           <img
@@ -104,7 +105,7 @@ export const ProductItem = ({
         <Text>{data.attributes.quantity}</Text>
       </Box>
       <Box sx={{ fontSize: "16px", flex: 1 }}>
-        <Text>{data.attributes.price}</Text>
+        <Text>{fomatCurrency(data.attributes.price)}</Text>
       </Box>
       {isBtn && (
         <Box

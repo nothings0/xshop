@@ -9,6 +9,7 @@ import MdEditor from "react-markdown-editor-lite";
 import { Loader, Button } from "ui/mantine";
 import { useNavigate } from "react-router-dom";
 import "./modify.scss";
+import useUserStore from "../zustand";
 
 interface IProducts {
   name: string | undefined;
@@ -29,7 +30,7 @@ const BASE_URL = "https://backend-md7c.onrender.com";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const Modify: React.FC<IProps> = ({ props }) => {
-  const jwt = "asasa";
+  const { jwt } = useUserStore();
   const router = useNavigate();
   const [thumb, setThumb] = useState<File>();
   const [product, setProduct] = useState<IProducts>({
@@ -91,7 +92,7 @@ const Modify: React.FC<IProps> = ({ props }) => {
           },
         }
       );
-      router("/admin");
+      router("/dashboard");
     } catch (error) {
       console.log(error);
     }

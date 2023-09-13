@@ -4,6 +4,7 @@ import { useQuery } from "ui/ReactQuery";
 import { GetOrders } from "../apiRequest";
 import { IAOrderServer } from "ui/type";
 import { Link } from "react-router-dom";
+import { fomatCurrency } from "ui/util";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -38,7 +39,7 @@ const OrderWrap = () => {
   return (
     <Box>
       <Box className={classes.header}>
-        <Box sx={{ flex: 2 }}>sản phẩm</Box>
+        <Box sx={{ flex: 3 }}>Sản phẩm</Box>
         <Box sx={{ flex: 1 }}>Số lượng</Box>
         <Box sx={{ flex: 1 }}>Thành tiền</Box>
       </Box>
@@ -78,7 +79,7 @@ const OrderItem = ({ data }: { data: IAOrderServer }) => {
       }}
     >
       <Box
-        sx={{ display: "flex", gap: "0 10px", flex: 2, alignItems: "center" }}
+        sx={{ display: "flex", gap: "0 10px", flex: 3, alignItems: "center" }}
       >
         <Box sx={{ width: "80px" }}>
           <img
@@ -123,10 +124,10 @@ const OrderItem = ({ data }: { data: IAOrderServer }) => {
       </Box>
       <Box sx={{ fontSize: "16px", flex: 1 }}>
         <Text>
-          {
+          {fomatCurrency(
             data.attributes.order_details.data[0].attributes.product.data
               .attributes.price
-          }
+          )}
         </Text>
       </Box>
     </Box>

@@ -8,16 +8,17 @@ import OrderDetailPage from "../pages/OrderDetailPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import Edit from "../pages/EditPage";
 import Create from "../pages/CreatePage";
+import Login from "../components/Login";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
     children: [
-      // {
-      //   index: true,
-      //   element: <LoginPage />
-      // },
+      {
+        index: true,
+        element: <Login />,
+      },
       {
         path: "dashboard",
         element: <MainLayout />,

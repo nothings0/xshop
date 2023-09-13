@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Navbar,
   Tooltip,
@@ -15,6 +15,7 @@ import {
   IconPlus,
   IconLogout,
 } from "ui/tabler";
+import useUserStore from "../zustand";
 // import { useRouter } from "next/navigation";
 
 const useStyles = createStyles((theme) => ({
@@ -84,10 +85,12 @@ const mockdata = [
 ];
 
 export default function NavbarMinimal() {
-  // const router = useRouter();
+  const navigate = useNavigate();
+  const { handleLogout } = useUserStore();
   const handleLogoutUser = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    // router.push("/");
+    handleLogout();
+    navigate("/");
   };
 
   const { pathname } = useLocation();

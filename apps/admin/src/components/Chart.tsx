@@ -11,13 +11,16 @@ import PieChartContainer from "./PieChart";
 import LineChartContainer from "./LineChart";
 import { IconArrowBigDownLine } from "ui/tabler";
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   box: {
     display: "flex",
     alignItems: "center",
     gap: "30px",
     margin: "4rem 0",
     padding: "0 1rem",
+    [theme.fn.smallerThan("lg")]: {
+      flexDirection: "column",
+    },
   },
   boxItem: {
     padding: "20px",
@@ -25,6 +28,9 @@ const useStyles = createStyles(() => ({
     height: "260px",
     width: "50%",
     borderRadius: "10px",
+    [theme.fn.smallerThan("lg")]: {
+      width: "100%",
+    },
   },
   chartItem: {
     display: "flex",
@@ -34,18 +40,27 @@ const useStyles = createStyles(() => ({
 }));
 
 const data = [
-  [
-    { name: "Group A", value: 35, color: "#0088FE" },
-    { name: "Group B", value: 65, color: "#0088FE1A" },
-  ],
-  [
-    { name: "Group A", value: 55, color: "#0088FE" },
-    { name: "Group B", value: 45, color: "#0088FE1A" },
-  ],
-  [
-    { name: "Group A", value: 85, color: "#0088FE" },
-    { name: "Group B", value: 15, color: "#0088FE1A" },
-  ],
+  {
+    title: "orders",
+    data: [
+      { name: "Group A", value: 35, color: "#0088FE" },
+      { name: "Group B", value: 65, color: "#0088FE1A" },
+    ],
+  },
+  {
+    title: "delivered",
+    data: [
+      { name: "Group A", value: 65, color: "#0088FE" },
+      { name: "Group B", value: 35, color: "#0088FE1A" },
+    ],
+  },
+  {
+    title: "canceled",
+    data: [
+      { name: "Group A", value: 15, color: "#0088FE" },
+      { name: "Group B", value: 85, color: "#0088FE1A" },
+    ],
+  },
 ];
 
 const ChartContainer = () => {

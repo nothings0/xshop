@@ -1,10 +1,11 @@
-import { useQuery } from "ui/ReactQuery";
 import { Box, Button, Center, Loader, Text, createStyles } from "ui/mantine";
-import { GetOrder } from "../apiRequest";
 import { useParams } from "react-router-dom";
 import { ProductItem } from "../components/ProductWrap";
 import { useFetch } from "ui/Hooks";
 import { IResAOrderServer } from "ui/type";
+import { useState } from "react";
+import axiosClient from "ui/config/axiosConfig";
+import { Modal } from "ui";
 
 const useStyles = createStyles(() => ({
   flex: {
@@ -22,16 +23,30 @@ const useStyles = createStyles(() => ({
 const OrderDetailPage = () => {
   const { classes } = useStyles();
   const { id } = useParams();
-  // const { data, isLoading } = useQuery({
-  //   queryFn: () => GetOrder(id!),
-  //   staleTime: 3 * 60 * 1000,
-  //   queryKey: "order-detail",
-  // });
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const [modalOpt, setModalOtp] = useState<number>(0);
 
   const { data, isLoading } = useFetch<IResAOrderServer>(
     "order-detail",
     `orders/${id}?populate[0]=order_details.product.picture_cover&populate[1]=status`
   );
+
+  const handleOrder = async (id: number, state: number) => {
+    try {
+      await axiosClient.put(`/orders/${id}`, {
+        state,
+        order: data?.data.attributes.order_details.data,
+      });
+      setOpen(false);
+      // router.push("/admin/order");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleButton = (otp: number) => {
+    setOpen(true);
+    setModalOtp(otp);
+  };
 
   if (isLoading)
     return (
@@ -113,9 +128,32 @@ const OrderDetailPage = () => {
           marginTop: "1rem",
         }}
       >
-        <Button color="gray">Hủy đơn hàng</Button>
-        <Button>Xác nhận</Button>
+        <Button color="gray" onClick={() => handleButton(0)}>
+          Hủy đơn hàng
+        </Button>
+        <Button onClick={() => handleButton(1)}>Xác nhận</Button>
       </Box>
+      {modalOpt === 0 ? (
+        <Modal
+          title="Hủy đơn hàng"
+          isOpen={isOpen}
+          onOk={() => handleOrder(data?.data.id!, 3)}
+          onCancel={setOpen}
+          onOpen={setOpen}
+        >
+          <p>Xác nhận hủy đơn</p>
+        </Modal>
+      ) : (
+        <Modal
+          title="Xác nhận đơn hàng"
+          isOpen={isOpen}
+          onOk={() => handleOrder(data?.data.id!, 4)}
+          onCancel={setOpen}
+          onOpen={setOpen}
+        >
+          <p>Bắt đầu gói và ship hàng</p>
+        </Modal>
+      )}
     </Box>
   );
 };

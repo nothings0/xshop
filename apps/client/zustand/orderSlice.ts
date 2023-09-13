@@ -1,6 +1,6 @@
 import { IOrder } from "@/type";
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from "ui/zustand";
+import { persist } from "ui/zustand";
 
 interface ITypeInitState {
   order: IOrder[];
