@@ -50,15 +50,15 @@ const data = [
   {
     title: "delivered",
     data: [
-      { name: "Group A", value: 65, color: "#0088FE" },
-      { name: "Group B", value: 35, color: "#0088FE1A" },
+      { name: "Group A", value: 65, color: "#FF922B" },
+      { name: "Group B", value: 35, color: "#FF922B1A" },
     ],
   },
   {
     title: "canceled",
     data: [
-      { name: "Group A", value: 15, color: "#0088FE" },
-      { name: "Group B", value: 85, color: "#0088FE1A" },
+      { name: "Group A", value: 15, color: "#FA5252" },
+      { name: "Group B", value: 85, color: "#FA52521A" },
     ],
   },
 ];
@@ -72,7 +72,7 @@ const ChartContainer = () => {
           <Text sx={{ fontSize: "25px", fontWeight: 700 }}>Pie chart</Text>
           <Radio.Group>
             <Group>
-              <Radio label="Chart" color="cyan" value="chart" />
+              <Radio checked={true} label="Chart" color="cyan" value="chart" />
               <Radio label="Show value" color="red" value="value" />
             </Group>
           </Radio.Group>

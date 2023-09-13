@@ -2,7 +2,7 @@ import React from "react";
 import { IResProductFamous } from "@/type";
 import ProductFamousItem from "./ProductFamousItem";
 import "./index.scss";
-import { axiosPrimary } from "@/config/axiosConfig";
+import { axiosPrimary } from "ui/config/axiosConfig";
 // import useFetch from "@/app/Hooks/useFetch";
 const getProduct = async () => {
   const res = await axiosPrimary.get(`/product-hots?populate=*`);

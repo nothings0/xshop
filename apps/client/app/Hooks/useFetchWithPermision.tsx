@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { axiosPrimary } from "@/config/axiosConfig";
+import { axiosPrimary } from "ui/config/axiosConfig";
 
 export default function useFetchWithPermision<T = unknown>(
   path: string,

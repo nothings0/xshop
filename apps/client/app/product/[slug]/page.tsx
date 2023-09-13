@@ -13,9 +13,11 @@ import Loading from "@/app/loading";
 import qs from "querystring";
 import MarkdownIt from "markdown-it";
 import parse from "html-react-parser";
+import { StaticImageData } from "next/image";
+import img from "@/assets/default-image.jpg";
 
 const mdParser = new MarkdownIt({ html: true });
-const URL = "https://backend-md7c.onrender.com";
+const URL = "https://backend-md7c.onrender.com/";
 const page = (context: any) => {
   const { slug } = context.params;
   const { data: res, isLoading } = useFetch<IResSimpleProduct>(
@@ -23,10 +25,12 @@ const page = (context: any) => {
     `products/${slug}?populate=*`
   );
   const product = res?.data;
-  const { cart, wishlist, setCart, setWishList } = useProductStore();
+  const { cart, setCart } = useProductStore();
   const [quantity, setQuantity] = useState<number>(1);
   const [isMore, setMore] = useState<boolean>(false);
-
+  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
+    `${URL}${product?.attributes.picture_cover.data[0].attributes.url}`
+  );
   const handleAdd = (product: IProduct) => {
     setCart(product);
   };
@@ -61,7 +65,8 @@ const page = (context: any) => {
           <>
             <div className="product-detail__img">
               <Image
-                src={`${URL}${product?.attributes.picture_cover.data[0].attributes.url}`}
+                // src={`${URL}${product?.attributes.picture_cover.data[0].attributes.url}`}
+                src={imgSrc}
                 alt=""
                 width={`${Number(
                   product?.attributes.picture_cover.data[0].attributes.width
@@ -69,6 +74,7 @@ const page = (context: any) => {
                 height={`${Number(
                   product?.attributes.picture_cover.data[0].attributes.height
                 )}`}
+                onError={() => setImgSrc(img)}
               />
             </div>
             <div className="product-detail__content">

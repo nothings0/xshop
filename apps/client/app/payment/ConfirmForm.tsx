@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "@/components/Button";
 import Modal from "@/components/Modal";
-import { axiosPrimary } from "@/config/axiosConfig";
+import { axiosPrimary } from "ui/config/axiosConfig";
 import { useRouter } from "next/navigation";
 import useUserStore from "@/zustand/userSlice";
 import useOrderStore from "@/zustand/orderSlice";

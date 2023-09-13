@@ -1,5 +1,5 @@
 "use client";
-import axiosClient from "@/config/axiosConfig";
+import axiosClient from "ui/config/axiosConfig";
 import { useQuery } from "react-query";
 
 export default function useFetch<T = unknown>(

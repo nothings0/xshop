@@ -1,5 +1,5 @@
 "use client";
-import { axiosPrimary } from "@/config/axiosConfig";
+import { axiosPrimary } from "ui/config/axiosConfig";
 import useOrderStore from "@/zustand/orderSlice";
 import useProductStore from "@/zustand/productSlice";
 import useUserStore from "@/zustand/userSlice";

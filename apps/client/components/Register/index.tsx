@@ -6,7 +6,7 @@ import "./index.scss";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { axiosPrimary } from "@/config/axiosConfig";
+import { axiosPrimary } from "ui/config/axiosConfig";
 
 const Register: React.FC = () => {
   const router = useRouter();

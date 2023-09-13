@@ -6,7 +6,7 @@ import useFetch from "ui/Hooks/useFetch";
 import MarkdownIt from "markdown-it";
 import "react-markdown-editor-lite/lib/index.css";
 import MdEditor from "react-markdown-editor-lite";
-import { Loader, Button } from "ui/mantine";
+import { Loader, Button, Center } from "ui/mantine";
 import { useNavigate } from "react-router-dom";
 import "./modify.scss";
 import useUserStore from "../zustand";
@@ -97,7 +97,12 @@ const Modify: React.FC<IProps> = ({ props }) => {
       console.log(error);
     }
   };
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <Center>
+        <Loader size="xl" />
+      </Center>
+    );
   return (
     <div className="modify">
       <div className="modify-header">

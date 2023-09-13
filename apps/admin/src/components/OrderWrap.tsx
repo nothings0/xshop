@@ -40,8 +40,8 @@ const OrderWrap = () => {
     <Box>
       <Box className={classes.header}>
         <Box sx={{ flex: 3 }}>Sản phẩm</Box>
-        <Box sx={{ flex: 1 }}>Số lượng</Box>
-        <Box sx={{ flex: 1 }}>Thành tiền</Box>
+        <Box sx={{ flex: 1, textAlign: "center" }}>Số lượng</Box>
+        <Box sx={{ flex: 1, textAlign: "center" }}>Thành tiền</Box>
       </Box>
       {data?.data.map((item, index) => (
         <OrderItem key={index} data={item} />
@@ -120,10 +120,12 @@ const OrderItem = ({ data }: { data: IAOrderServer }) => {
         </Box>
       </Box>
       <Box sx={{ fontSize: "16px", flex: 1 }}>
-        <Text>{data.attributes.order_details.data[0].attributes.quantity}</Text>
+        <Text align="center">
+          {data.attributes.order_details.data[0].attributes.quantity}
+        </Text>
       </Box>
       <Box sx={{ fontSize: "16px", flex: 1 }}>
-        <Text>
+        <Text align="center">
           {fomatCurrency(
             data.attributes.order_details.data[0].attributes.product.data
               .attributes.price

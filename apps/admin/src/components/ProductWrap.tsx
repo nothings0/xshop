@@ -22,6 +22,7 @@ const useStyles = createStyles(() => ({
     justifyContent: "space-between",
     padding: "1rem",
     background: "#fff",
+    gap: "0 10px",
     "&>div": {
       fontSize: "18px",
       fontWeight: 600,
@@ -49,8 +50,8 @@ const ProductWrap = ({ isBtn }: { isBtn?: boolean }) => {
     <Box>
       <Box className={classes.header}>
         <Box sx={{ flex: 3 }}>Sản phẩm</Box>
-        <Box sx={{ flex: 1 }}>Số lượng</Box>
-        <Box sx={{ flex: 1 }}>Giá</Box>
+        <Box sx={{ flex: 1, textAlign: "center" }}>Số lượng</Box>
+        <Box sx={{ flex: 1, textAlign: "center" }}>Giá</Box>
         {isBtn && <Space sx={{ flex: 1 }}></Space>}
       </Box>
       {data?.data.map((item, index) => (
@@ -81,6 +82,7 @@ export const ProductItem = ({
         padding: "1rem",
         marginTop: "1rem",
         background: "#fff",
+        gap: "0 10px",
       }}
     >
       <Box
@@ -94,18 +96,18 @@ export const ProductItem = ({
           />
         </Box>
         <Box>
-          <Link to={`/product/${data.id}`}>
-            <Text sx={{ fontSize: "19px", fontWeight: 600 }}>
+          <a href={`http://localhost:3000/product/${data.id}`} target="_blank">
+            <Text sx={{ fontSize: "19px", fontWeight: 600 }} lineClamp={2}>
               {data.attributes.name}
             </Text>
-          </Link>
+          </a>
         </Box>
       </Box>
       <Box sx={{ fontSize: "16px", flex: 1 }}>
-        <Text>{data.attributes.quantity}</Text>
+        <Text align="center">{data.attributes.quantity}</Text>
       </Box>
       <Box sx={{ fontSize: "16px", flex: 1 }}>
-        <Text>{fomatCurrency(data.attributes.price)}</Text>
+        <Text align="center">{fomatCurrency(data.attributes.price)}</Text>
       </Box>
       {isBtn && (
         <Box

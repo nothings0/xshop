@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import "./index.scss";
 import { IProduct } from "../../type";
 import Image from "next/image";
@@ -7,6 +8,9 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import useProductStore from "@/zustand/productSlice";
 import { fomatCurrency } from "@/utities";
 import Button from "../Button";
+import img from "@/assets/default-image.jpg";
+import { StaticImageData } from "next/image";
+
 interface IProps {
   product: IProduct;
   type?: string;
@@ -14,6 +18,10 @@ interface IProps {
 const URL = "https://backend-md7c.onrender.com";
 const ProductCard: React.FC<IProps> = ({ product, type }) => {
   const { cart, setCart } = useProductStore();
+  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
+    `${URL}${product.attributes.picture_cover.data[0].attributes.url}`
+  );
+
   const active = cart.some((p) => p.id === product.id);
   const handleAdd = (product: IProduct) => {
     setCart(product);
@@ -23,7 +31,7 @@ const ProductCard: React.FC<IProps> = ({ product, type }) => {
     return (
       <div className="product__item rate">
         <Image
-          src={`${URL}${product.attributes.picture_cover.data[0].attributes.url}`}
+          src={imgSrc}
           alt=""
           width={`${Number(
             product.attributes.picture_cover.data[0].attributes.width
@@ -31,6 +39,7 @@ const ProductCard: React.FC<IProps> = ({ product, type }) => {
           height={`${Number(
             product.attributes.picture_cover.data[0].attributes.height
           )}`}
+          onError={() => setImgSrc(img)}
         />
         <div className="product__item__text">
           <span>{product.attributes.supplier_id.data.attributes.name}</span>
@@ -71,7 +80,7 @@ const ProductCard: React.FC<IProps> = ({ product, type }) => {
     return (
       <div className="product__item best">
         <Image
-          src={`${URL}${product.attributes.picture_cover.data[0].attributes.url}`}
+          src={imgSrc}
           alt=""
           width={`${Number(
             product.attributes.picture_cover.data[0].attributes.width
@@ -79,6 +88,7 @@ const ProductCard: React.FC<IProps> = ({ product, type }) => {
           height={`${Number(
             product.attributes.picture_cover.data[0].attributes.height
           )}`}
+          onError={() => setImgSrc(img)}
         />
         <div className="product__item__text">
           <Link href={`/product/${product.id}`}>
@@ -92,7 +102,7 @@ const ProductCard: React.FC<IProps> = ({ product, type }) => {
   return (
     <div className="product__item">
       <Image
-        src={`${URL}${product.attributes.picture_cover.data[0].attributes.url}`}
+        src={imgSrc}
         alt=""
         width={`${Number(
           product.attributes.picture_cover.data[0].attributes.width
@@ -100,6 +110,7 @@ const ProductCard: React.FC<IProps> = ({ product, type }) => {
         height={`${Number(
           product.attributes.picture_cover.data[0].attributes.height
         )}`}
+        onError={() => setImgSrc(img)}
       />
       <Link href={`/product/${product.id}`}>
         <div className="product__item__text">

@@ -6,7 +6,7 @@ import Button from "../Button";
 import "./index.scss";
 import useUserStore from "@/zustand/userSlice";
 import Cookies from "js-cookie";
-import { axiosPrimary } from "@/config/axiosConfig";
+import { axiosPrimary } from "ui/config/axiosConfig";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 

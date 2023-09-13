@@ -1,4 +1,4 @@
-import axiosClient from "@/config/axiosConfig";
+import axiosClient from "ui/config/axiosConfig";
 import { useEffect, useCallback, useState } from "react";
 
 export default function useDebounce<T = unknown>(path: string, delay: number) {

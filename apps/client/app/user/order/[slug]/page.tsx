@@ -8,7 +8,7 @@ import "./index.scss";
 import Image from "next/image";
 import Button from "@/components/Button";
 import moment from "moment";
-import { axiosPrimary } from "@/config/axiosConfig";
+import { axiosPrimary } from "ui/config/axiosConfig";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/Modal";
 import Link from "next/link";

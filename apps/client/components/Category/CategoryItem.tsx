@@ -1,19 +1,26 @@
+"use client";
+import React, { useState } from "react";
 import { ICategory } from "@/type";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { StaticImageData } from "next/image";
+import img from "@/assets/default-image.jpg";
 
 interface IProps {
   category: ICategory;
 }
 const URL = "https://backend-md7c.onrender.com";
 const CategoryItem: React.FC<IProps> = ({ category }) => {
+  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
+    `${URL}${category.attributes.img_cover.data.attributes.url}`
+  );
+
   return (
     <div className="category__item">
       <Link href={`/product?category=${category.attributes.slug}`}>
         <div className="category__item__text">{category.attributes.name}</div>
         <Image
-          src={`${URL}${category.attributes.img_cover.data.attributes.url}`}
+          src={imgSrc}
           alt="category image"
           width={`${Number(
             category.attributes.img_cover.data.attributes.width
@@ -21,6 +28,7 @@ const CategoryItem: React.FC<IProps> = ({ category }) => {
           height={`${Number(
             category.attributes.img_cover.data.attributes.height
           )}`}
+          onError={() => setImgSrc(img)}
         />
       </Link>
     </div>

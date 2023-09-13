@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import "./index.scss";
 import Image from "next/image";
-import { axiosPrimary } from "@/config/axiosConfig";
+import { axiosPrimary } from "ui/config/axiosConfig";
 import { useRouter } from "next/navigation";
 import { IResSupplier, IResCategory, IProduct } from "@/type";
 import useFetch from "@/app/Hooks/useFetch";
