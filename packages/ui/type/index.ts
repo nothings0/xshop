@@ -40,6 +40,10 @@ export interface ISupplier {
     publishedAt: string;
   };
 }
+export interface IOder {
+  product: IProduct | null;
+  quantity: number | null;
+}
 export interface IUser {
   id: number;
   username: string;

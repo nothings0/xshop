@@ -1,8 +1,4 @@
-import { IOrder, IProduct } from "@/type";
-interface IOder {
-  product: IProduct | null;
-  quantity: number | null;
-}
+import { IOrder, IProduct, IOder } from "@/type";
 
 export function checkAndModifyArrayOrder(arr: IOder[], obj: IOder): void {
   if (arr.length === 0 && obj.quantity !== 0) {

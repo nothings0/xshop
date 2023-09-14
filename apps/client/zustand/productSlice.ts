@@ -1,7 +1,6 @@
-import { create } from "zustand";
-import { IOrder, IProduct } from "@/type";
+import { create, persist } from "ui/zustand";
+import { IOrder, IProduct } from "ui/type";
 import { checkAndModifyArray } from "@/utities";
-import { persist } from "zustand/middleware";
 
 interface ITypeInitState {
   supplier: string;

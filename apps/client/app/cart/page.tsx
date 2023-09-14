@@ -15,7 +15,7 @@ const MainCart = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const { cart, removeProduct } = useProductStore();
-  const { setNewOrder } = useOrderStore();
+  const { setNewOrder, handleQuantity, handleCheckAll } = useOrderStore();
 
   useEffect(() => {
     let orderBefore: IOrder[] = [];
@@ -31,25 +31,8 @@ const MainCart = () => {
     setOrder(orderBefore);
   }, [cart]);
 
-  const handleCheckAll = (event: React.FormEvent<HTMLInputElement>) => {
-    const checked = event.currentTarget.checked;
-    setIsCheckedAll(checked);
-    const arr = order.map((item) => ({
-      ...item,
-      isChecked: checked,
-    }));
-    setOrder(arr);
-    const newOrder: IOrder[] = [];
-    arr.forEach((item) => {
-      if (item.isChecked) {
-        let newObj: IOrder = {
-          product: item.product,
-          quantity: item.quantity,
-        };
-        newOrder.push(newObj);
-      }
-    });
-    setNewOrder(newOrder);
+  const onCheckAll = (event: React.FormEvent<HTMLInputElement>) => {
+    handleCheckAll(event, order, setOrder, setIsCheckedAll);
   };
 
   const handleCheckboxChange = (id: number) => {
@@ -79,27 +62,8 @@ const MainCart = () => {
     }
   };
 
-  const handleQuantity = (newQuantity: number, id: number) => {
-    const arr = order.map((item) =>
-      item.product?.id === id
-        ? {
-            ...item,
-            quantity: newQuantity,
-          }
-        : item
-    );
-    setOrder(arr);
-    const newOrder: IOrder[] = [];
-    arr.forEach((item) => {
-      if (item.isChecked) {
-        let newObj: IOrder = {
-          product: item.product,
-          quantity: item.quantity,
-        };
-        newOrder.push(newObj);
-      }
-    });
-    setNewOrder(newOrder);
+  const onHandleQuantity = (newQuantity: number, id: number) => {
+    handleQuantity(newQuantity, id, order, setOrder);
   };
 
   const productsArr = () => {
@@ -137,7 +101,7 @@ const MainCart = () => {
                 name=""
                 id="checkbox"
                 checked={isCheckedAll}
-                onChange={handleCheckAll}
+                onChange={onCheckAll}
               />
               <label htmlFor="checkbox">Tất cả</label>
             </div>
@@ -163,7 +127,7 @@ const MainCart = () => {
                 <CartItem
                   data={item}
                   onChange={handleCheckboxChange}
-                  onHandleQuantity={handleQuantity}
+                  onHandleQuantity={onHandleQuantity}
                   key={index}
                 />
               ))
